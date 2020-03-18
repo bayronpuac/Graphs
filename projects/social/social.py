@@ -89,15 +89,31 @@ class SocialGraph:
         """
         visited = {}  # Note that this is a dictionary, not a set
         # !!!! IMPLEMENT ME
+        qq = Queue()
 
+        qq.enqueue([user_id])
 
+        while qq.size() > 0:
+            path = qq.dequeue()
 
+            v = path[-1]
+
+            if v not in visited:
+                visited[v] = path # adding this path to the dictionary as a shortest way here
+
+                for neighbor in self.friendships[v]:
+                    path_copy = path.copy()
+                    path_copy.append(neighbor)
+                    qq.enqueue(path_copy)
         return visited
+
 
 
 if __name__ == '__main__':
     sg = SocialGraph()
     sg.populate_graph(10, 2)
+    print("Print Friendships")
     print(sg.friendships)
     connections = sg.get_all_social_paths(1)
+    print("Print Connections")
     print(connections)
