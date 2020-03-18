@@ -96,7 +96,7 @@ class Graph:
                 for neighbor in self.get_neighbors(v):
                     s.push(neighbor)
 
-# stack = []
+# stack = [1]
 # visited = {1, 2, 4, 7, 6, 3, 5}
 
     def dft_recursive(self, starting_vertex, visited=None):
@@ -151,7 +151,7 @@ class Graph:
                     path_copy = path.copy()
                     path_copy.append(neighbor)
                     # ENQUEUE THE COPY
-                    q.enqueue(path_copy)
+                    q.enqueue(path_copy) 
 
 
     def dfs(self, starting_vertex, destination_vertex):
@@ -268,16 +268,16 @@ if __name__ == '__main__':
     graph.dft(1)
     graph.dft_recursive(1)
 
-    # '''
-    # Valid BFS path:
-    #     [1, 2, 4, 6]
-    # '''
-    # print(graph.bfs(1, 6))
+    '''
+    Valid BFS path:
+        [1, 2, 4, 6]
+    '''
+    print(graph.bfs(1, 6))
 
-    # '''
-    # Valid DFS paths:
-    #     [1, 2, 4, 6]
-    #     [1, 2, 4, 7, 6]
-    # '''
-    # print(graph.dfs(1, 6))
-    # print(graph.dfs_recursive(1, 6))
+    '''
+    Valid DFS paths:
+        [1, 2, 4, 6]
+        [1, 2, 4, 7, 6]
+    '''
+    print(graph.dfs(1, 6))
+    print(graph.dfs_recursive(1, 6))
