@@ -2,8 +2,22 @@ from room import Room
 from player import Player
 from world import World
 
+
 import random
 from ast import literal_eval
+
+class Stack():
+    def __init__(self):
+        self.stack = []
+    def push(self, value):
+        self.stack.append(value)
+    def pop(self):
+        if self.size() > 0:
+            return self.stack.pop()
+        else:
+            return None
+    def size(self):
+        return len(self.stack)
 
 # Load world
 world = World()
@@ -13,8 +27,8 @@ world = World()
 # map_file = "maps/test_line.txt"
 # map_file = "maps/test_cross.txt"
 # map_file = "maps/test_loop.txt"
-# map_file = "maps/test_loop_fork.txt"
-map_file = "maps/main_maze.txt"
+map_file = "maps/test_loop_fork.txt"
+# map_file = "maps/main_maze.txt"
 
 # Loads the map into a dictionary
 room_graph=literal_eval(open(map_file, "r").read())
@@ -29,7 +43,25 @@ player = Player(world.starting_room)
 # traversal_path = ['n', 'n']
 traversal_path = []
 
-
+# Create a stack
+s = Stack()
+# Push A PATH TO the starting vertex
+s.push(0)
+# Create a set to store visited vertices
+visited = set()
+# While the stack is not empty...
+while len(visited) < len(room_graph):
+    pass
+    # Pop the first PATH
+    # GRAB THE VERTEX FROM THE END OF THE PATH
+    # Check if it's been visited
+    # If it hasn't been visited...
+        # Mark it as visited
+        # CHECK IF IT'S THE TARGET
+            # IF SO, RETURN THE PATH
+        # Enqueue A PATH TO all it's neighbors
+            # MAKE A COPY OF THE PATH
+            # PUSH THE COPY
 
 # TRAVERSAL TEST
 visited_rooms = set()
