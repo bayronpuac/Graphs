@@ -25,10 +25,10 @@ world = World()
 
 # You may uncomment the smaller graphs for development and testing purposes.
 # map_file = "maps/test_line.txt"
-map_file = "maps/test_cross.txt"
+# map_file = "maps/test_cross.txt"
 # map_file = "maps/test_loop.txt"
 # map_file = "maps/test_loop_fork.txt"
-# map_file = "maps/main_maze.txt"
+map_file = "maps/main_maze.txt"
 
 # Loads the map into a dictionary
 room_graph=literal_eval(open(map_file, "r").read())
@@ -43,18 +43,17 @@ player = Player(world.starting_room)
 # traversal_path = ['n', 'n']
 traversal_path = []
 
-# Create a stack
-s = Stack()
-# Push A PATH TO the starting vertex
-s.push(0)
-# Create a set to store visited vertices
-visited = set()
+backwards_path = []
 
-while len(visited) < len(room_graph):
-    current = s.stack[-1]
-    visited.add(current)
-    neighbors = room_graph[current]
-    not_visited = []
+# Add backwards directions to get out of rooms with no exits by going back to previous rooms
+backwards_directions = {'n': 's', 's': 'n', 'e': 'w', 'w': 'e'}
+
+# Create visited dictionary
+visited = {}
+
+# Start in room 0 with current exits
+visited[0] = player.current_room.get_exits()
+
 
 # TRAVERSAL TEST
 visited_rooms = set()
