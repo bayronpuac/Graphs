@@ -46,13 +46,39 @@ traversal_path = []
 backwards_path = []
 
 # Add backwards directions to get out of rooms with no exits by going back to previous rooms
-backwards_directions = {'n': 's', 's': 'n', 'e': 'w', 'w': 'e'}
+backwards_directions = {
+    'n': 's', 
+    's': 'n', 
+    'e': 'w', 
+    'w': 'e'
+    
+    }
 
 # Create visited dictionary
-visited = {}
+visited = {
+
+}
 
 # Start in room 0 with current exits
 visited[0] = player.current_room.get_exits()
+
+# Loop while we have not visited all rooms in room_graph
+while len(visited) < len(room_graph):
+    # Check if current room not in visited
+    if player.current_room.id not in visited:
+        visited[player.current_room.id] = player.current_room.get_exits()
+        last_path = backwards_path[-1]
+        visited[player.current_room.id].remove(last_path)
+    while len(visited[player.current_room.id]) < 1:
+        backwards = backwards_path.pop()
+        traversal_path.append(backwards)
+        player.travel(backwards)
+    exit_room = visited[player.current_room.id].pop(0)
+    traversal_path.append(exit_room)
+    backwards_path.append(backwards_directions[exit_room])
+    player.travel(exit_room)
+    if len(room_graph) - len(visited) == 1:
+        visited[player.current_room.id] = player.current_room.get_exits()
 
 
 # TRAVERSAL TEST
