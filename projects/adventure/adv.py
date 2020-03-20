@@ -25,9 +25,9 @@ world = World()
 
 # You may uncomment the smaller graphs for development and testing purposes.
 # map_file = "maps/test_line.txt"
-# map_file = "maps/test_cross.txt"
+map_file = "maps/test_cross.txt"
 # map_file = "maps/test_loop.txt"
-map_file = "maps/test_loop_fork.txt"
+# map_file = "maps/test_loop_fork.txt"
 # map_file = "maps/main_maze.txt"
 
 # Loads the map into a dictionary
@@ -49,19 +49,12 @@ s = Stack()
 s.push(0)
 # Create a set to store visited vertices
 visited = set()
-# While the stack is not empty...
+
 while len(visited) < len(room_graph):
-    pass
-    # Pop the first PATH
-    # GRAB THE VERTEX FROM THE END OF THE PATH
-    # Check if it's been visited
-    # If it hasn't been visited...
-        # Mark it as visited
-        # CHECK IF IT'S THE TARGET
-            # IF SO, RETURN THE PATH
-        # Enqueue A PATH TO all it's neighbors
-            # MAKE A COPY OF THE PATH
-            # PUSH THE COPY
+    current = s.stack[-1]
+    visited.add(current)
+    neighbors = room_graph[current]
+    not_visited = []
 
 # TRAVERSAL TEST
 visited_rooms = set()
